@@ -22,6 +22,7 @@ HINT:  64 / 25 equals 2, and 64 % 25 equals 14
 Use the following lines of code to read an integer from the user.  The Scanner object will be used.
 Don't forget to import the java.util.Scanner package. 
 
+```
 import java.util.Scanner;
 
 public static void main(String[] args) {
@@ -37,3 +38,4 @@ public static void main(String[] args) {
    // .....program logic goes here .....
 
 } // end main
+```
