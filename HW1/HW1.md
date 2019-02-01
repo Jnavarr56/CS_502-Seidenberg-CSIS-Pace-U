@@ -2,14 +2,13 @@
 
 ### 1-[20 points] 
 
-Write a program to calculate the area of a circle ( 3.1425*r*r ).  The program will output the area of the circle based on a radius value initialized in the program.
+Write a program to calculate the area of a circle ( 3.1425 x raduius x radius ).  The program will output the area of the circle based on a radius value initialized in the program.
 
 ### 2-[80 points]
 
 Write a program that reads an integer value between 0 and 100 (inclusive), representing the amount of a purchase in cents.  Produce an error message if the input value is not in range.  If the input is valid, determine the amount of change that would be received from one dollar, and print the number of quarters, dimes, nickels, and pennies that should be returned.  Maximize the coins with the highest value.
 Follow the format below.
 
-	En	 36
 
 OUTPUT:
 	Your change of 64 cents is given as:
