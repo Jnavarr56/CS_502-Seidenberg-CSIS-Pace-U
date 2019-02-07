@@ -4,8 +4,9 @@
 
 ### 1) [40 points] Design and implement an application that reads an integer value and prints out the sum of all EVEN integers between 2 and its input value, inclusive. Print an error message if the input value is less than 2.  Prompt accordingly.
 
-### 2) [60 points] Computers are playing an increasing role in education.  Write a program that will help elementary school children learn multiplication.  Use the Random class in the java.util package to produce two positive one-digit integers.  The format to generating
-## this number is as follows:
+### 2) [60 points] Computers are playing an increasing role in education.  Write a program that will help elementary school children learn multiplication.  Use the Random class in the java.util package to produce two positive one-digit integers.  
+
+##The format to generating this number is as follows:
 
 ```
     import java.util.* ;
