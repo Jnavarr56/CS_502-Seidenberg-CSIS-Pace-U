@@ -62,7 +62,7 @@ class GetEvenFactorialSum {
 
     System.out.println("\nStarting Total: " + total + "\n");
 
-    for(int i = 3; i < Integer.parseInt(input); i++) {
+    for(int i = 2; i < Integer.parseInt(input) + 1; i++) {
 
       if (i % 2 == 0) { 
 
