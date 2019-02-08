@@ -2,7 +2,6 @@
 
 import java.util.* ;
 
-
 public class MultiplicationTrainer {
 
   public static boolean isNumeric(String strNum) {
