@@ -2,7 +2,7 @@
 
 import java.util.Scanner; 
 
-class GetEvenFactorialSum {
+public class GetEvenFactorialSum {
 
   public static boolean isNumeric(String strNum) {
 

@@ -3,7 +3,7 @@
 import java.util.* ;
 
 
-class MultiplicationTrainer {
+public class MultiplicationTrainer {
 
   public static boolean isNumeric(String strNum) {
 
@@ -32,12 +32,12 @@ class MultiplicationTrainer {
     System.out.println("trainer. I will give you a multiplication");
     System.out.println("question. Type your answer and I will see");
     System.out.println("if you're correct.");
-    System.out.println("\n\nEnter anything but STOP to start.");
-    System.out.println("You can hit STOP at anytime to quit.");
+    System.out.println("\n\nEnter anything but -1 to start.");
+    System.out.println("You can hit -1 to quit.");
 
     String proceed = new Scanner(System.in).next();
 
-    if (proceed.equals("STOP")) {
+    if (proceed.equals("-1")) {
 
       System.out.println(dismissalText);
 
@@ -61,7 +61,7 @@ class MultiplicationTrainer {
 
       while (!isNumeric(input) || Integer.parseInt(input) != ans) {
 
-        if (input.equals("STOP")) {
+        if (input.equals("-1")) {
 
           System.out.println(dismissalText);
 
@@ -70,7 +70,7 @@ class MultiplicationTrainer {
 
         else if (!isNumeric(input)) {
 
-          System.out.println("That's not a number! Try again or hit STOP to quit.");
+          System.out.println("That's not a number! Try again or hit -1 to quit.");
 
         }
 
@@ -86,11 +86,11 @@ class MultiplicationTrainer {
 
       System.out.println("\nVery good!\n");
 
-      System.out.println("Enter anything to go again or STOP to quit.");
+      System.out.println("Enter anything to go again or -1 to quit.");
 
       input = new Scanner(System.in).next();
 
-      if (input.equals("STOP")) {
+      if (input.equals("-1")) {
 
         System.out.println(dismissalText);
 
@@ -99,7 +99,6 @@ class MultiplicationTrainer {
       }
 
     }
-
 
     System.out.println(bar);
 
