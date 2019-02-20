@@ -39,6 +39,8 @@ public class Question2 {
         System.out.println("Hour:   |     method 1:    |   method2:");
         System.out.println("=======================================");
 
+        
+        //method1Earnings > method2Earnings7
         while(method2Earnings <= method1Earnings) {
 
             method1Earnings = method1(hour);
@@ -70,7 +72,5 @@ public class Question2 {
 
     }
 }
-
-
 
 

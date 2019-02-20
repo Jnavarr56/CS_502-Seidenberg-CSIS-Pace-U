@@ -41,7 +41,6 @@ NOTE:  Here are the answers in total earnings:
      5           $50           $3.10 (+1.60 for 5th hr)
      6           $60           $6.30 (+3.20 for 6th hr)
      etc...
-
 ```
 
 ### 2) [20 points] Write a program that will determine the number of hours required before the second method 

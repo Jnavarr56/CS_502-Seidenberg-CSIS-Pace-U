@@ -30,9 +30,9 @@ public class Question1 {
     String menu = bar + menuHeader + bar + option1 + option2 + option3 + option4;
 
     Scanner scan = new Scanner(System.in);
-    boolean runningProgram = true;
-    boolean runningCalculation;
-    String hoursWorked;
+    boolean runningProgram = true; //<-- Acts as a switch I can use to prevent program in loop from running again.
+    boolean runningCalculation; //<-- Acts as a switch I can use to prevent program in loop from running again.
+    String hoursWorked; 
     double earnings;
     String input; 
 
@@ -65,11 +65,11 @@ public class Question1 {
 
         while(runningCalculation) {
 
-          System.out.println("How many hours (please enter a number)? You can also enter NEVERMIND to return to the menu.");
+          System.out.println("How many hours (please enter a number)? You can also enter BACK to return to the menu.");
 
           hoursWorked = scan.next();
 
-          if (hoursWorked.equals("NEVERMIND")) {
+          if (hoursWorked.equals("BACK")) {
 
             runningCalculation = false;
 
@@ -135,3 +135,5 @@ public class Question1 {
   }
 
 }
+
+
