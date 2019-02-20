@@ -40,7 +40,7 @@ public class Question1 {
         boolean gameProgramRunning = true, currentGameRunning;
 
         // 3.E Create text strings.
-        String gamePrompt = "Hey, welcome to GuessTheNumber!\nI've picked a number between 0 and 99. Take a guess and press enter.\nEnter -1 to quit!\n\n";
+        String gamePrompt = "Hey, welcome to GuessTheNumber!\nI've picked a number between 0 and 99. Take a guess and press enter.\nEnter -1 to quit the current game!\n\n";
         String wrongGuess = "Ah, sorry, wrong guess! You guessed too ";
         String correctGuess = "Woo, good job! You guessed correctly.";
         String goodbye = "Sorry to see you go!\n";
@@ -71,10 +71,23 @@ public class Question1 {
 
                 if (userInput.equals("-1")) { // Shut down both loops if the user types in -1.
 
-                    System.out.println("Quitter!!!");
-
+                    System.out.println("Quitter! To start a new game, type anything but -1 and hit enter to start. Entering -1 will end the entire program.");
+                    
                     currentGameRunning = false;
-                    gameProgramRunning = false;
+
+                    userInput = scan.next();
+
+                    if (userInput.equals("-1")) {
+
+                        gameProgramRunning = false;
+
+                    }
+
+                    else {
+
+                        System.out.println("I've generated a new random number between 0 and 99 for you. Same rules as before. Let's go!");
+
+                    }                       
                     
                 }
 
@@ -135,8 +148,6 @@ public class Question1 {
                         userInput = scan.next();
 
                         if (userInput.equals("-1")) {
-
-                            System.out.println("Quitter!!!");
 
                             currentGameRunning = false;
                             gameProgramRunning = false;
