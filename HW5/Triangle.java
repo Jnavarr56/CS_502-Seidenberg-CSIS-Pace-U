@@ -1,16 +1,38 @@
-class Triangle {
+package HW5;
 
-    int side1;
-    int side2;
-    int side3;
+public class Triangle {
 
-    boolean isScalene() {
+    private int side1;
+    private int side2;
+    private int side3;
 
-        return (side1 + side2 + side3) % 3 != 0  ? true : false;
+    public Triangle(int side1, int side2, int side3) {
+
+        this.side1 = side1;
+        this.side2 = side2;
+        this.side3 = side3;
+
+    }
+
+    public boolean isScalene() {
+
+        if (
+            (side1 != side2) 
+            &&
+            (side1 != side3)
+            &&
+            (side2 != side3) 
+        ) {
+
+            return true;
+
+        } 
+
+        return false;
         
     }
 
-    boolean isIsoceles() {
+    public boolean isIsoceles() {
 
         if (
             ( (side1 == side2) && (side2 != side3) ) 
@@ -26,16 +48,16 @@ class Triangle {
 
     }
 
-    boolean isEquilateral() {
+    public boolean isEquilateral() {
 
         return (side1 == side2) && (side2 == side3) ? true : false;
 
     }
 
-    int calculatePerimeter() {
+    public int calculatePerimeter() {
 
         return side1 + side2 + side3;
 
     }
-
 }
+
