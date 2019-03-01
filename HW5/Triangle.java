@@ -1,4 +1,4 @@
-package HW5;
+package shapes;
 
 public class Triangle {
 
