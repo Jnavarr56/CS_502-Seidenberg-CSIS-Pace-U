@@ -4,7 +4,7 @@ class Main {
 
     public static void main(String args[]) {
 
-        //Maybe add a formatting of the time object like 00:00:00.
+        
 
         /*
 

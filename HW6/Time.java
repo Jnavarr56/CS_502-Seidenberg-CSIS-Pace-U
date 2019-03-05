@@ -28,7 +28,7 @@ public class Time {
         hour = 0;
         minute = 0;
         second = 0;
-
+        
     }
 
     public void printTime() {
@@ -39,7 +39,9 @@ public class Time {
         // "%d:%d:%d" for the first parameter, and then hour, minute, second
         // and the method will produce a version of the string that is 
         // equivalent to (hour + ":" + minute + ":" + second).
-        System.out.println(String.format("%d:%d:%d", hour, minute, second));
+
+        
+        System.out.println(String.format("%02d:%02d:%02d", hour, minute, second));
 
     }
 
