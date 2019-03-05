@@ -1,6 +1,7 @@
-import shapes.Triangle;
+import shapes.Triangle; //<-- Import the Triangle class from the shapes package.
 
 public class TriangleTest {
+    
     public static void main(String args[]) {
 
         System.out.println("\n\n");
