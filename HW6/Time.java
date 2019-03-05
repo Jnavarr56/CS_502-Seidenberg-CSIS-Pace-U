@@ -7,11 +7,14 @@ public class Time {
     private int minute;
     private int second;
 
+    // Methods will be public since we need to use them directy 
+    // in another class [INTERFACE].
+
 
     // Java does not have optional parameters, so in order to
     // design an object so that it can set default values to
     // instance variables if there are no parameters, but also
-    // set values for instanve values when there ARE parameters
+    // set values for instance values when there ARE parameters
     // we need to have 2 constructors. 
     public Time(int hour, int minute, int second) {
 
