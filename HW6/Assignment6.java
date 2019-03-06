@@ -58,10 +58,9 @@ class Main {
             }
 
             System.out.println("\nExpected: " + expectedTestResults[t]);
-
             System.out.println("Outcome:  " + testTimeObj.returnTime() + "\n");
 
-            System.out.println("Passed: " + (expectedTestResults[t].equals(testTimeObj.returnTime()) ? "TRUE" : "FALSE"));
+            System.out.println("Passed?: " + (expectedTestResults[t].equals(testTimeObj.returnTime()) ? "TRUE" : "FALSE"));
 
             System.out.println("--------------------------------------------");
 
