@@ -33,7 +33,7 @@ public class Time {
 
     public void printTime() {
 
-        // The Sting.format() method allows us to create a string by substituting
+        // The String.format() method allows us to create a string by substituting
         // in variable values for "format specifiers" in a specific order.
         // %d is the format specifier for an integer, so we simply pass in
         // "%d:%d:%d" for the first parameter, and then hour, minute, second
@@ -45,7 +45,13 @@ public class Time {
 
     }
 
-    public void Tick() {
+    public String returnTime() {
+        
+        return String.format("%02d:%02d:%02d", hour, minute, second);
+
+    }
+
+    public void tick() {
 
         // Reset clock to 0 hour and 0 minute if we passed a 24 hour cycle.
         if (hour == 24) { hour = 0; minute = 0; }

@@ -4,30 +4,70 @@ class Main {
 
     public static void main(String args[]) {
 
-        
+        Time testTimeObj;
+        int t = 0, i;
 
-        /*
+        int[][] testData = {
+            {4, 20, 0},
+            {6, 50, 0},
+            {23, 59, 30},
+            {0, 55, 10},
+            {12, 59, 53},
+            {24, 0, 0},
+        };
 
-        We just have to write 5 tests now.
-        For example, the below test should produce a time of 0:0:1.
+        String[] expectedTestResults = {
+            "04:21:00",
+            "06:51:00",
+            "00:00:30",
+            "00:56:10",
+            "13:00:53",
+            "00:01:00",
+        };
 
-        Time test = new Time();
+        while (t < testData.length) {
 
-        int i = 0;
+            testTimeObj = new Time(testData[t][0], testData[t][1], testData[t][2]);
 
-        while (i < (2 * (24 * 60 * 60) + 1)) {
+            System.out.println("TEST NUMBER: " + (t + 1) + "------------------------------");
 
-            test.Tick();
+            System.out.println("\nTest Data: ");
+            System.out.println("  - Hour = " + testData[t][0]);
+            System.out.println("  - Minute = " + testData[t][1]);
+            System.out.println("  - Second = " + testData[t][2]);
 
-            i ++;
-        
+            System.out.println("\nTicking: ");
+
+            i = 0;
+
+            while (i < 60) {
+
+                testTimeObj.tick();
+
+                i ++;
+
+                System.out.print(
+
+                    String.format("%02d", i) + 
+                    " " + 
+                    (i == 60 ? "times" : "") + 
+                    (i % 15 == 0 ? "\n" : "")
+
+                );
+
+            }
+
+            System.out.println("\nExpected: " + expectedTestResults[t]);
+
+            System.out.println("Outcome:  " + testTimeObj.returnTime() + "\n");
+
+            System.out.println("Passed: " + (expectedTestResults[t].equals(testTimeObj.returnTime()) ? "TRUE" : "FALSE"));
+
+            System.out.println("--------------------------------------------");
+
+            t ++;
+
         }
-
-        test.printTime();
-
-        */
-
-        
 
     } 
 
