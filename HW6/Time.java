@@ -40,7 +40,6 @@ public class Time {
         // and the method will produce a version of the string that is 
         // equivalent to (hour + ":" + minute + ":" + second).
 
-        
         System.out.println(String.format("%02d:%02d:%02d", hour, minute, second));
 
     }
@@ -48,7 +47,7 @@ public class Time {
     public String returnTime() {
         
         return String.format("%02d:%02d:%02d", hour, minute, second);
-
+        
     }
 
     public void tick() {
