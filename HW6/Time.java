@@ -31,7 +31,7 @@ public class Time {
         
     }
 
-    public void printTime() {
+    public String returnTime() {
 
         // The String.format() method allows us to create a string by substituting
         // in variable values for "format specifiers" in a specific order.
@@ -39,15 +39,15 @@ public class Time {
         // "%d:%d:%d" for the first parameter, and then hour, minute, second
         // and the method will produce a version of the string that is 
         // equivalent to (hour + ":" + minute + ":" + second).
-
-        System.out.println(String.format("%02d:%02d:%02d", hour, minute, second));
-
-    }
-
-    public String returnTime() {
         
         return String.format("%02d:%02d:%02d", hour, minute, second);
         
+    }
+
+    public void printTime() {
+
+        System.out.println(returnTime());
+
     }
 
     public void tick() {
