@@ -1,29 +1,19 @@
 package timeTest;
 
+import java.util.ArrayList;
+
 public class TestData {
-    
-    private int[] testInput;
-    private String testExpectedOutput;
 
-    private int testHour;
-    private int testMinute;
-    private int testSecond;
-    private int testNumTicks;
-
-    private int testNumber;
-    private int displayRowLength;
-    private String testHeader;
-    private String testFooter;
-    private String testFormattedInput;
-
-    private static final String TEST_HEADER_FORMAT = new String(
+    private static ArrayList<TestData> ALL_TESTDATA = new ArrayList<TestData>();
+    private static int idCount = 0;
+    public static final String TEST_HEADER_FORMAT = new String(
 
         "=============== TEST NUMBER: %d ==============="
         
     );
-    private static final String INPUT_STRING_FORMAT = new String(
+    public static final String INPUT_STRING_FORMAT = new String(
 
-        "\n\tInput Data:" +
+        "\n\t* Input Data:" +
         "\n\t--------------------------" + 
         "\n\t  - Hour = %d" + 
         "\n\t  - Minute = %d" +
@@ -33,87 +23,117 @@ public class TestData {
         "\n\t  - Expected Output: %s"
         
     );
-    private static final String TIME_STRING_FORMAT = "%d:%d:%d";
+    public static final String TIME_STRING_FORMAT = "%d:%d:%d";
 
+    public static final TestData[] testDataset = { 
 
+        new TestData(new int[] {6, 50, 0, 60, 10}, "06:51:00"),
+        new TestData(new int[] {0, 55, 10, 60, 10}, "00:56:10"),
+        new TestData(new int[] {12, 59, 53, 60, 10}, "13:00:53"),
+        new TestData(new int[] {23, 59, 30, 60, 10}, "00:00:30"),
+        new TestData(new int[] {2, 01, 22, 60, 10}, "02:02:22"),
+    
+    };
+
+    public final int id = ++ idCount;
+
+    private Test test;
+
+    private int[] testInput;
+    private String testExpectedOutput;
+
+    private int testHr;
+    private int testMin;
+    private int testSec;
+    private int testNumTicks;
+
+    private int gridRowLen;
+    private String testHeader;
+    private String testFooter;
+    private String testFormattedInput;
+    private String timeStr;
 
     public TestData(int[] testInput, String testExpectedOutput) {
 
         this.testInput = testInput;
         this.testExpectedOutput = testExpectedOutput;
 
-        setTestInputNumsFromArr(testInput);
-        setTestFormattedInputFromSelf();
+        testHr = testInput[0];
+        testMin = testInput[1];
+        testSec = testInput[2];
+        testNumTicks = testInput[3];
+        gridRowLen = testInput[4];
 
-    }
+        timeStr = String.format(
+            
+            TIME_STRING_FORMAT, 
 
-    private void setTestFormattedInputFromSelf() {
-        
+            testHr, 
+            testMin, 
+            testSec
+
+        ); 
+
         testFormattedInput = String.format(
 
             INPUT_STRING_FORMAT,
 
-            testHour,
-            testMinute, 
-            testSecond,
-            buildTimeString(),
+            testHr,
+            testMin, 
+            testSec,
+            timeStr,
             testNumTicks + " secs",
             testExpectedOutput
         
         );
 
-    }
-
-    private void setTestInputNumsFromArr(int[] testInput) {
-
-        testHour = testInput[0];
-        testMinute = testInput[1];
-        testSecond = testInput[2];
-        testNumTicks = testInput[3];
-        displayRowLength = testInput[4];
-
-    }
-
-    public void setTestNumberHeaderFooter(int testNumber) {  
-        
-        this.testNumber = testNumber; 
-
-        testHeader = String.format(TEST_HEADER_FORMAT,  ++this.testNumber);
-
+        testHeader = String.format(TEST_HEADER_FORMAT,  id);
         testFooter = "\n" + "=".repeat(testHeader.length());
-    
+
+        ALL_TESTDATA.add(this);
+
     }
 
-    public int getTestHour() { return testHour; }
+    public int getTestHr() { return testHr; }
 
-    public int getTestMinute() { return testMinute; }
+    public int getTestMin() { return testMin; }
 
-    public int getTestSecond() { return testSecond; }
+    public int getTestSec() { return testSec; }
 
     public int getTestNumTicks() { return testNumTicks; }
 
-    public int getDisplayRowLength() { return displayRowLength; }
-
     public String getExpectedOutput() { return testExpectedOutput; }
 
-    public void printTestHeader() { System.out.println(testHeader); }
+    public int getGridRowLen() { return gridRowLen; }
 
-    public void printTestFooter() { System.out.println(testFooter); }
+    public String getTestHeaderAndPrint() { 
 
-    public void printTestFormattedInput() { System.out.println(testFormattedInput); }
+        System.out.println(testHeader);
 
-    private String buildTimeString() { 
-        
-        return String.format(
-            
-            TIME_STRING_FORMAT, 
-
-            testHour, 
-            testMinute, 
-            testSecond
-
-        ); 
-            
+        return testHeader;
+    
     }
+
+    public String getTestFooterAndPrint() { 
+
+        System.out.println(testFooter);
+
+        return testFooter;
+    
+    }
+
+    public String getTestFormattedInputAndPrint() { 
+
+        System.out.println(testFormattedInput);
+        
+        return testFormattedInput; 
+
+    }
+
+    public static ArrayList<TestData> allTestData() { return ALL_TESTDATA; }
+
+    public void attachToTest(Test test) { this.test = test; }
+
+    public Test belongsToTest(Test test) { return test; }
 
 }

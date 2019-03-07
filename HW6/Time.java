@@ -1,27 +1,37 @@
 package militaryTime;
 
+import timeTest.*; 
+import java.util.*;
+
 public class Time {
 
-    private int hr;
-    private int min;
-    private int sec;
+    private static ArrayList<Time> ALL_TIMES = new ArrayList<Time>();
+    private static int idCount = 0;
 
-    private static final String TIME_STRING_FORMAT = "%02d:%02d:%02d";
-    private static final String TICK_HEADER = new String(
+    public final int id = ++ idCount;
+
+    private Test test;
+
+    public static final String TIME_STRING_FORMAT = "%02d:%02d:%02d";
+    public static final String TICK_HEADER = new String(
         
-        "\n\tInitiating Ticks:" +
+        "\n\t* Initiating Ticks:" +
         "\n\t--------------------------"
 
     );
-    private static final String TICK_CELL_FORMAT = "%s%02d%s";
-    private static final String COL_LEN_ERROR_MSG = new String(
+    public static final String TICK_CELL_FORMAT = "%s%02d%s";
+    public static final String COL_LEN_ERROR_MSG = new String(
 
         "\t(Column length greater than\n" +
         "\ttotal times, defaulting to\n" +
         "\tcol length of 1.)"
 
     );
-    private static final int DELAY_BASE = 1000;
+    public static final int DELAY_BASE = 2000;
+
+    private int hr;
+    private int min;
+    private int sec;
 
 
 
@@ -31,8 +41,12 @@ public class Time {
         this.min = min;
         this.sec = sec;
 
+        ALL_TIMES.add(this);
+
+        idCount ++;
+
     }
-    public Time() { hr = 0; min = 0; sec = 0; }
+    public Time() { hr = 0; min = 0; sec = 0; ALL_TIMES.add(this); }
 
     public String returnTime() { return String.format(TIME_STRING_FORMAT, hr, min, sec); }
 
@@ -99,9 +113,11 @@ public class Time {
 
     }
 
-    public void tickMultipleTimesAndPrint(int times, int displayRowLength) { 
+    public String tickMultipleTimesAndPrint(int times, int displayRowLength) { 
     
         tickLoop(times, true, displayRowLength, DELAY_BASE/times); 
+
+        return "\n\n\t* Performed Ticks " + "[" + times + "]\n";
 
     }
     public void tickMultipleTimes(int times) {  tickLoop(times, false, 0, 0); }
@@ -127,5 +143,17 @@ public class Time {
         catch (Exception e) { System.out.println(e); }
 
     }
+
+    public static ArrayList<Time> allTimes() { return ALL_TIMES; }
+
+    public void attachTest(Test test) { 
+        
+        test.attachToTime(this);
+
+        this.test = test; 
+
+    }
+
+    public Test test() { return test; }
 
 }
