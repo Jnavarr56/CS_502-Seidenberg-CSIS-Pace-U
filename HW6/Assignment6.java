@@ -1,73 +1,90 @@
-import militaryTime.Time;
+import timeTest.*;
+import militaryTime.*;
 
 class Main {
-
     public static void main(String args[]) {
 
-        Time testTimeObj;
-        int t = 0, i;
+        Time timeObj;
+        TestData currentTestObj;
 
-        int[][] testData = {
-            {4, 20, 0},
-            {6, 50, 0},
-            {23, 59, 30},
-            {0, 55, 10},
-            {12, 59, 53},
-            {24, 0, 0},
+        TestData[] testDataset = { 
+            
+            new TestData(new int[] {4, 20, 0, 60, 10}, "04:21:00"),
+            new TestData(new int[] {6, 50, 0, 60, 10}, "06:51:00"),
+            new TestData(new int[] {0, 55, 10, 60, 10}, "00:56:10"),
+            new TestData(new int[] {12, 59, 53, 60, 10}, "13:00:53"),
+            new TestData(new int[] {23, 59, 30, 60, 10}, "00:00:30"),
+            new TestData(new int[] {2, 01, 22, 60, 10}, "02:02:22"),
+        
         };
+        
+        int testNumber = 0;
 
-        String[] expectedTestResults = {
-            "04:21:00",
-            "06:51:00",
-            "00:00:30",
-            "00:56:10",
-            "13:00:53",
-            "00:01:00",
-        };
+        while (testNumber < testDataset.length) {
 
-        while (t < testData.length) {
+            currentTestObj = testDataset[testNumber];
 
-            testTimeObj = new Time(testData[t][0], testData[t][1], testData[t][2]);
+            currentTestObj.setTestNumberHeaderFooter(testNumber);
 
-            System.out.println("TEST NUMBER: " + (t + 1) + "------------------------------");
+            currentTestObj.printTestHeader();
+            currentTestObj.printTestFormattedInput();
 
-            System.out.println("\nTest Data: ");
-            System.out.println("  - Hour = " + testData[t][0]);
-            System.out.println("  - Minute = " + testData[t][1]);
-            System.out.println("  - Second = " + testData[t][2]);
 
-            System.out.println("\nTicking: ");
+            timeObj = new Time(
 
-            i = 0;
+                currentTestObj.getTestHour(), 
+                currentTestObj.getTestMinute(), 
+                currentTestObj.getTestSecond()
+                
+            );
 
-            while (i < 60) {
+            timeObj.tickMultipleTimesAndPrint(
 
-                testTimeObj.tick();
+                currentTestObj.getTestNumTicks(), 
+                currentTestObj.getDisplayRowLength()
 
-                i ++;
+            );
 
-                System.out.print(
+            printInputExpectedComparison(
+                timeObj, 
+                currentTestObj.getExpectedOutput()
+            );
 
-                    String.format("%02d", i) + 
-                    " " + 
-                    (i == 60 ? "times" : "") + 
-                    (i % 15 == 0 ? "\n" : "")
+            currentTestObj.printTestFooter();
 
-                );
+            delay(1000);
 
-            }
-
-            System.out.println("\nExpected: " + expectedTestResults[t]);
-            System.out.println("Outcome:  " + testTimeObj.returnTime() + "\n");
-
-            System.out.println("Passed?: " + (expectedTestResults[t].equals(testTimeObj.returnTime()) ? "TRUE" : "FALSE"));
-
-            System.out.println("--------------------------------------------");
-
-            t ++;
+            testNumber ++;
 
         }
 
     } 
+
+    private static void delay(int delay) {
+
+        try { Thread.sleep(delay); } 
+        catch (Exception e) { System.out.println(e); }
+
+    }
+
+    private static void printInputExpectedComparison(Time timeObj, String expectedOutcome) {
+
+        String timeFromObj = timeObj.returnTime(), comparisonStr;
+        
+        comparisonStr = String.format(
+
+            "\n\tExpected Output: %s" +
+            "\n\tActual Output: %s" +
+            "\n\tPassed?: %s",
+
+            expectedOutcome,
+            timeFromObj,
+            (expectedOutcome.equals(timeFromObj) ? "TRUE" : "FALSE")
+        
+        );
+
+        System.out.println(comparisonStr);
+
+    }
 
 }
