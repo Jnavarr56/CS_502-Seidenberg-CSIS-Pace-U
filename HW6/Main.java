@@ -17,9 +17,9 @@ class Main {
             "---------------------------------------" +
             "\n\n* This program consists of 4 classes:\n" +
             "*****************************************\n" +
-            "    1) Main.java (just the main program class)\n" +
+            "    1) Main.java (just the main program class we are running right now)\n" +
             "    2) TestData.java (to hold the input data for tests, belongs to the Test.java class.)\n" +
-            "    3) Test.java (to join the TestData and Time classes.)\n" +
+            "    3) Test.java (to has one TestData belongs to Time.)\n" +
             "    4) Time.java (the time object itself.)\n\n"
             
         );
@@ -55,13 +55,15 @@ class Main {
                 (Character.toLowerCase(menuSelection) == 'g')
             ) {
 
-                validMenuSelection = true;
-
                 if (Character.toLowerCase(menuSelection) == 'a') {
 
                     runDefaultTests();
 
-                    validMenuSelection = false;
+                }
+
+                else if (Character.toLowerCase(menuSelection) == 'b') {
+
+                    displayDefaultDataset();
 
                 }
 
@@ -72,6 +74,8 @@ class Main {
                         "Bye, see you later!\n" +
                         "=======================================\n"
                     );
+
+                    validMenuSelection = true;
 
                 }
 
@@ -145,7 +149,7 @@ class Main {
 
         }
 
-        System.out.println("* Done!");
+        System.out.println("* Done running default dataset tests!");
 
         Test.writeOption();
 
@@ -184,6 +188,18 @@ class Main {
         generatePeriods(100, 20);
 
         runTestLoop(true);
+
+    }
+
+    private static void displayDefaultDataset() {
+
+        System.out.print("\ngenerating default dataset table");
+
+        generatePeriods(100, 20);
+
+        System.out.print(TestData.generateDefaultTestDataTable());
+
+        System.out.println("\b* Done generating default dataset table!");
 
     }
 

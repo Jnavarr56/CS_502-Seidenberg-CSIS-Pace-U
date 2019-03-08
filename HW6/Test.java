@@ -124,13 +124,7 @@ public class Test {
 
             File directory = new File("./results_logs/");
 
-            if (!directory.exists()){
-
-                directory.mkdir();
-
-                System.out.println("HI");
-
-            }
+            if (!directory.exists()){ directory.mkdir(); }
 
             FileWriter fileWriter = new FileWriter(filename);
             PrintWriter printWriter = new PrintWriter(fileWriter);

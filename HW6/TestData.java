@@ -136,4 +136,36 @@ public class TestData {
 
     public Test belongsToTest(Test test) { return test; }
 
+    public static String generateDefaultTestDataTable() { 
+
+        String title =      "\n=======================TEST DATASET=====================\n";
+        String header1 =    "|          |        Inputs        |                    |\n";
+        String bar1 =       "|----------|----------------------|--------------------|\n";
+        String header2 =    "|    ID    |  Hr  |  Min  |  Sec  |  Expected Outcome  |\n";
+        String bar2 =       "|----------|------|-------|-------|--------------------|\n";
+        String rowFormat =  "|  %02d      |  %02d  |   %02d  |  %02d   |      %s      |\n";
+        String table = title + header1 + bar1 + header2 + bar2;
+
+        for (TestData row : testDataset) {
+
+            table += String.format(
+                
+                rowFormat, 
+                
+                row.id, 
+                row.getTestHr(),
+                row.getTestMin(),
+                row.getTestSec(),
+                row.getExpectedOutput()
+
+            );
+
+        }
+
+        table +=  "========================================================\n\n";
+
+        return table;
+    
+    }
+
 }
