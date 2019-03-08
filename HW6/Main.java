@@ -55,17 +55,11 @@ class Main {
                 (Character.toLowerCase(menuSelection) == 'g')
             ) {
 
-                if (Character.toLowerCase(menuSelection) == 'a') {
+                if (Character.toLowerCase(menuSelection) == 'a') { runDefaultTests(); }
 
-                    runDefaultTests();
+                else if (Character.toLowerCase(menuSelection) == 'b') { displayDefaultDataset(); }
 
-                }
-
-                else if (Character.toLowerCase(menuSelection) == 'b') {
-
-                    displayDefaultDataset();
-
-                }
+                else if (Character.toLowerCase(menuSelection) == 'c') { displayDefaultDataset(); }
 
                 else if (Character.toLowerCase(menuSelection) == 'e') {
 
@@ -124,11 +118,11 @@ class Main {
 
         if (test) {
             
-            TestData[] testDataset = TestData.testDataset;
+            ArrayList<TestData> testDataset = TestData.getDefaultTestDataset();
 
-            while (testNumber < testDataset.length) {
+            while (testNumber < testDataset.size()) {
     
-                runTest(testDataset[testNumber]);
+                runTest(testDataset.get(testNumber));
     
                 testNumber ++;
     
@@ -137,11 +131,15 @@ class Main {
         }
         else {
 
-            TestData[] testDataset = { new TestData(new int[] {3, 50, 0, 60, 10}, "03:51:00") };
+            ArrayList<TestData> testDataset = new ArrayList<TestData>() {{
+                
+                new TestData(new int[] {3, 50, 0, 60, 10}, "03:51:00");
 
-            while (testNumber < testDataset.length) {
+            }};
+
+            while (testNumber < testDataset.size()) {
     
-                runTest(testDataset[testNumber]);
+                runTest(testDataset.get(testNumber));
     
                 testNumber ++;
     
@@ -200,6 +198,92 @@ class Main {
         System.out.print(TestData.generateDefaultTestDataTable());
 
         System.out.println("\b* Done generating default dataset table!");
+
+    }
+
+    private static boolean isNumeric(String strNum) {
+
+        try {
+    
+            double d = Double.parseDouble(strNum);
+    
+        } 
+        catch (NumberFormatException | NullPointerException nfe) {
+    
+            return false;
+        }
+    
+        return true; 
+    }
+
+    private static void runOwnTest() {
+
+        String hr;
+        String min;
+        String sec;
+        String expectedOutput;
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("\nloading custom test module");
+
+        generatePeriods(100, 20);
+
+        boolean invalidInput = true;
+        boolean enteredInvalid = false;
+
+        TestData newTestData;
+
+        while (invalidInput) {
+
+            if (enteredInvalid) {
+
+                System.out.println("Invalid Input!. Try again.\n------------------");
+
+            }
+
+            System.out.print("\nEnter the test hour: ");
+            hr = scan.next();
+            System.out.print("\nEnter the test min: ");
+            min = scan.next();
+            System.out.print("\nEnter the test sec: ");
+            sec = scan.next();
+            System.out.print("\nEnter the expected output: ");
+            expectedOutput = scan.next();
+
+            if (
+                (!isNumeric(hr))
+                ||
+                (!isNumeric(min))
+                ||
+                (!isNumeric(sec))
+                ||
+                (expectedOutput.length() != 8)
+            ) {
+
+                /*
+                newTestData = new TestData({
+
+
+                }, expectedOutput);
+                */
+
+                enteredInvalid = true;
+
+            }
+
+            else {
+
+                invalidInput = false;
+
+            }
+
+            
+
+        }
+
+
+
 
     }
 

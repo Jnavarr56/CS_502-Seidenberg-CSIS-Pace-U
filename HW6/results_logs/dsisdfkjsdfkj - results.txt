@@ -19,7 +19,7 @@
 	Expected Output: 06:51:00
 	Actual Output: 06:51:00
 	Passed?: TRUE
-	Run at: Thu Mar 07 19:19:02 EST 2019
+	Run at: Thu Mar 07 20:50:10 EST 2019
 
 ==============================================
 =============== TEST NUMBER: 2 ===============
@@ -42,7 +42,7 @@
 	Expected Output: 00:56:10
 	Actual Output: 00:56:10
 	Passed?: TRUE
-	Run at: Thu Mar 07 19:19:05 EST 2019
+	Run at: Thu Mar 07 20:50:13 EST 2019
 
 ==============================================
 =============== TEST NUMBER: 3 ===============
@@ -65,7 +65,7 @@
 	Expected Output: 13:00:53
 	Actual Output: 13:00:53
 	Passed?: TRUE
-	Run at: Thu Mar 07 19:19:08 EST 2019
+	Run at: Thu Mar 07 20:50:16 EST 2019
 
 ==============================================
 =============== TEST NUMBER: 4 ===============
@@ -88,7 +88,7 @@
 	Expected Output: 00:00:30
 	Actual Output: 00:00:30
 	Passed?: TRUE
-	Run at: Thu Mar 07 19:19:11 EST 2019
+	Run at: Thu Mar 07 20:50:19 EST 2019
 
 ==============================================
 =============== TEST NUMBER: 5 ===============
@@ -111,6 +111,29 @@
 	Expected Output: 02:02:22
 	Actual Output: 02:02:22
 	Passed?: TRUE
-	Run at: Thu Mar 07 19:19:14 EST 2019
+	Run at: Thu Mar 07 20:50:22 EST 2019
+
+==============================================
+=============== TEST NUMBER: 6 ===============
+
+	* Input Data:
+	--------------------------
+	  - Hour = 6
+	  - Minute = 5
+	  - Second = 5
+	  - Start Time: 6:5:5
+	  - Number of Ticks: 60 secs
+	  - Expected Output: 06:06:06
+
+
+	* Performed Ticks [60]
+
+
+	* Results:
+	--------------------------
+	Expected Output: 06:06:06
+	Actual Output: 06:06:05
+	Passed?: FALSE
+	Run at: Thu Mar 07 20:50:26 EST 2019
 
 ==============================================

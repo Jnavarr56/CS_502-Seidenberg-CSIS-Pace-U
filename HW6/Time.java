@@ -34,7 +34,6 @@ public class Time {
     private int sec;
 
 
-
     public Time(int hr, int min, int sec) {
 
         this.hr = hr;

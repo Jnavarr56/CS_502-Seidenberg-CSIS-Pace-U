@@ -1,6 +1,7 @@
 package timeTest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestData {
 
@@ -25,15 +26,22 @@ public class TestData {
     );
     public static final String TIME_STRING_FORMAT = "%d:%d:%d";
 
-    public static final TestData[] testDataset = { 
-
-        new TestData(new int[] {6, 50, 0, 60, 10}, "06:51:00"),
-        new TestData(new int[] {0, 55, 10, 60, 10}, "00:56:10"),
-        new TestData(new int[] {12, 59, 53, 60, 10}, "13:00:53"),
-        new TestData(new int[] {23, 59, 30, 60, 10}, "00:00:30"),
-        new TestData(new int[] {2, 01, 22, 60, 10}, "02:02:22"),
     
-    };
+
+    private static ArrayList<TestData> testDataset = new ArrayList<TestData>(
+
+        Arrays.asList( 
+            new TestData(new int[] {6, 50, 0, 60, 10}, "06:51:00"),
+            new TestData(new int[] {0, 55, 10, 60, 10}, "00:56:10"),
+            new TestData(new int[] {12, 59, 53, 60, 10}, "13:00:53"),
+            new TestData(new int[] {23, 59, 30, 60, 10}, "00:00:30"),
+            new TestData(new int[] {2, 01, 22, 60, 10}, "02:02:22"),
+            new TestData(new int[] {6, 05, 06, 60, 10}, "06:06:06")
+        )
+    
+    );
+
+
 
     public final int id = ++ idCount;
 
@@ -138,12 +146,12 @@ public class TestData {
 
     public static String generateDefaultTestDataTable() { 
 
-        String title =      "\n=======================TEST DATASET=====================\n";
-        String header1 =    "|          |        Inputs        |                    |\n";
-        String bar1 =       "|----------|----------------------|--------------------|\n";
-        String header2 =    "|    ID    |  Hr  |  Min  |  Sec  |  Expected Outcome  |\n";
-        String bar2 =       "|----------|------|-------|-------|--------------------|\n";
-        String rowFormat =  "|  %02d      |  %02d  |   %02d  |  %02d   |      %s      |\n";
+        String title =    "\n|========================================TEST DATASET========================================|\n";
+        String header1 =    "|          |        Inputs        |                                     |                    |\n";
+        String bar1 =       "|----------|----------------------|-------------------------------------|--------------------|\n";
+        String header2 =    "|    ID    |  Hr  |  Min  |  Sec  |  Formatted Input  | # Ticks to Test |  Expected Outcome  |\n";
+        String bar2 =       "|----------|------|-------|-------|-------------------|-----------------|--------------------|\n";
+        String rowFormat =  "|  %02d      |  %02d  |   %02d  |  %02d   |      %s     |    %02d secs      |      %s      |\n";
         String table = title + header1 + bar1 + header2 + bar2;
 
         for (TestData row : testDataset) {
@@ -156,16 +164,37 @@ public class TestData {
                 row.getTestHr(),
                 row.getTestMin(),
                 row.getTestSec(),
-                row.getExpectedOutput()
+                row.buildInputString(),
+                row.getTestNumTicks(),
+                row.getExpectedOutput()    
 
             );
 
         }
 
-        table +=  "========================================================\n\n";
+        table +=  "|============================================================================================|\n\n";
 
         return table;
     
     }
+
+    public String buildInputString() {
+
+        return String.format(
+
+            "%02d:%02d:%02d",
+
+            testHr,
+            testMin,
+            testSec
+
+        );
+
+    }
+
+
+    public static ArrayList<TestData> getDefaultTestDataset() { return testDataset; }
+
+    public static void addToDefaultTestDataset(TestData newTestData) { testDataset.add(newTestData); }
 
 }
