@@ -19,7 +19,7 @@ class Main {
             "*****************************************\n" +
             "    1) Main.java (just the main program class we are running right now)\n" +
             "    2) TestData.java (to hold the input data for tests, belongs to the Test.java class.)\n" +
-            "    3) Test.java (to has one TestData belongs to Time.)\n" +
+            "    3) Test.java (to conduct the tests, has one TestData belongs to Time.)\n" +
             "    4) Time.java (the time object itself.)\n\n"
             
         );
@@ -59,7 +59,7 @@ class Main {
 
                 else if (Character.toLowerCase(menuSelection) == 'b') { displayDefaultDataset(); }
 
-                else if (Character.toLowerCase(menuSelection) == 'c') { displayDefaultDataset(); }
+                else if (Character.toLowerCase(menuSelection) == 'c') { runOwnTest(); }
 
                 else if (Character.toLowerCase(menuSelection) == 'e') {
 
@@ -84,11 +84,8 @@ class Main {
                     
                 ); 
             }
-        
-
 
         }
-
 
     }
     
@@ -238,35 +235,28 @@ class Main {
 
             if (enteredInvalid) {
 
-                System.out.println("Invalid Input!. Try again.\n------------------");
+                System.out.println("Invalid Input! (inputs must have 00 format and expected output must have 00:00:00 format). Try again.\n------------------");
 
             }
 
-            System.out.print("\nEnter the test hour: ");
+            System.out.print("\nEnter the test hour (00 format): ");
             hr = scan.next();
-            System.out.print("\nEnter the test min: ");
+            System.out.print("\nEnter the test min (00 format): ");
             min = scan.next();
-            System.out.print("\nEnter the test sec: ");
+            System.out.print("\nEnter the test sec (00 format): ");
             sec = scan.next();
-            System.out.print("\nEnter the expected output: ");
+            System.out.print("\nEnter the expected output string: ");
             expectedOutput = scan.next();
 
             if (
-                (!isNumeric(hr))
+                (!isNumeric(hr) || hr.length() < 2)
                 ||
-                (!isNumeric(min))
+                (!isNumeric(min) || min.length() < 2)
                 ||
-                (!isNumeric(sec))
+                (!isNumeric(sec) || min.length() < 2)
                 ||
                 (expectedOutput.length() != 8)
             ) {
-
-                /*
-                newTestData = new TestData({
-
-
-                }, expectedOutput);
-                */
 
                 enteredInvalid = true;
 
@@ -274,16 +264,47 @@ class Main {
 
             else {
 
-                invalidInput = false;
+                System.out.println(
+
+                    String.format(
+                        
+                        "\nYour input: %02d:%02d:%02d\nYour expected output: %s",
+
+                        Integer.parseInt(hr),
+                        Integer.parseInt(min),
+                        Integer.parseInt(sec),
+                        expectedOutput
+
+                    )
+                    
+                );
+
+                System.out.print("\nIs this correct? Yy to continue, Nn to redo, anything else to return to menu: ");
+
+                String confirmation = Character(scan.next().charAt(0)).toString().toLowerCase();
+
+                if (confirmation.equals("n")) { 
+                    
+                    enteredInvalid = false;
+                
+                }
+
+                else { 
+                    
+                    invalidInput = false; 
+
+                    if (confirmation.equals("y")) {
+                        //Add to test data
+
+                        TestData.
+
+                    }
+                
+                }                
 
             }
 
-            
-
         }
-
-
-
 
     }
 
