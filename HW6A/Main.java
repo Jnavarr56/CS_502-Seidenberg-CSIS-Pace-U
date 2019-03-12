@@ -44,6 +44,8 @@ public class Main {
 
             confirmation = scan.next();
 
+            confirmation = confirmation.toLowerCase().trim();
+
             validInput = confirmation.equals("y") || confirmation.equals("n") ? true : false;
 
             if ( confirmation.equals("y") )  {
@@ -114,13 +116,43 @@ public class Main {
                     delay(250);
                     System.out.println(row);
 
-                    output += row;
+                    output +=  ("\n" + row);
 
                     testNum++;
 
                 }
 
             }
+                            
+            System.out.println("\nDone!");
+
+            boolean validInput = false;
+            Scanner userScan = new Scanner(System.in);
+            String input;
+    
+            while(!validInput) {
+
+                System.out.print(
+                    "\nWould you like to write this table to\n" + 
+                    "'results.txt' in this directory? [Yy/Nn]: "
+                );
+
+                input = userScan.next();
+                
+                validInput = input.toLowerCase().trim().equals("y") || input.toLowerCase().trim().equals("n") ? true : false;
+
+                if ( input.toLowerCase().trim().equals("y") ) {
+
+                    writeToFile(output);
+
+                }
+
+            }
+
+            System.out.println(
+                "\nBye!\n"+
+                "=========================================" + "\n"
+            );
 
         }
 
@@ -129,11 +161,6 @@ public class Main {
             System.out.println(e);
 
         }
-
-        System.out.println(
-            "\nDone!\n"+
-            "=========================================" + "\n"
-        );
 
     }
 
@@ -167,19 +194,19 @@ public class Main {
 
         String title =    "\n|================================================TESTS================================================|\n";
         String header1 =    "|       |        Inputs        |                                     |                    |           |\n";
-        String bar1 =       "|-------|------|-------|-------|-------------------|-----------------|--------------------|-----------|\n";
-        String header2 =    "|   #   |  Hr  |  Min  |  Sec  |  Formatted Input  | # Ticks to Test |  Expected Outcome  |  Passed?  |";
+        String bar =        "|-------|------|-------|-------|-------------------|-----------------|--------------------|-----------|";
+        String header2 =    "|   #   |  Hr  |  Min  |  Sec  |  Formatted Input  | # Ticks to Test |  Expected Outcome  |  Passed?  |\n";
 
-        return title + header1 + bar1 + header2;
+        return title + header1 + bar + "\n" + header2 + bar;
 
     }
 
     private static String generateRow(int testNum, TestData testDataObj, Time timeObj) {
 
-        String rowFormat =  "|  %02d   |  %02d  |   %02d  |  %02d   |      %s     |    %02d secs      |      %s      |   %B    |";
-        String bar =       "|-------|------|-------|-------|-------------------|-----------------|--------------------|-----------|";
+        String rowFormat =  "|  %02d   |  %02d  |   %02d  |  %02d   |      %s     |%s|      %s      |   %B    |";
+        String bar =        "\n|-------|------|-------|-------|-------------------|-----------------|--------------------|-----------|";
 
-        rowFormat = bar + "\n" + rowFormat;
+        rowFormat = rowFormat + bar;
 
         return String.format(
             rowFormat,
@@ -188,13 +215,46 @@ public class Main {
             testDataObj.getTestMin(),
             testDataObj.getTestSec(),
             testDataObj.getFormattedInputStr(),
-            testDataObj.getNumTestTicks(),
+            formatOutcomeCell( testDataObj.getNumTestTicks(),  " # Ticks to Test " ),
             testDataObj.getExpectedOutputStr(),
             testDataObj.getExpectedOutputStr().equals(timeObj.getTime())
         );
 
     }
 
+    private static String formatOutcomeCell(int numTicks, String example) {
+
+        String cellHeader = example;
+        String cellContent = String.format("%02d secs", numTicks);
+        String leftSpace = " ".repeat( ( cellHeader.length() - cellContent.length() ) / 2  );
+        String rightSpace = " ".repeat( cellHeader.length() - ( leftSpace.length() + cellContent.length() ) ) ;
+
+        return leftSpace + cellContent + rightSpace;
+
+    }
+
+    private static void writeToFile(String text) {
+
+        try  {
+
+            FileWriter fileWriter = new FileWriter("./results.txt");
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.print(text);
+            printWriter.close();
+
+            System.out.print("\nwriting to file");
+            generateLoadingChar(100, 20, '.');
+            System.out.println("Done writing results to results.txt!");
+
+        }
+
+        catch(IOException e) {
+
+            System.out.println(e);
+
+        }
+
+    }
 
 }
 
