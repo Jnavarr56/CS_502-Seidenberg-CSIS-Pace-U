@@ -1,8 +1,12 @@
-# =================Test Dataset==================
-# Format for expected output must be hh:mm:ss
-# input data, number of ticks to test, expected output
+# ==========================Test Dataset==========================
+# All lines with starting with # symbol or whitespace are ignored.
+# All other whitespace ignored too.
+# Format:
+# input data (hh:mm:ss) or (h:m:s), number of ticks to test, expected output (hh:mm:ss) 
 
 12:59:30, 60, 13:00:30
-1:0:01, 60, 01:01:01
+01:00:01, 60, 01:01:01
 23:59:21, 60, 00:00:21
-5:30:23, 60, 05:31:23
+05:30:23, 60, 05:31:23
+00:30:23, 1800, 01:00:23
+07:22:55, 60, 07:23:55
