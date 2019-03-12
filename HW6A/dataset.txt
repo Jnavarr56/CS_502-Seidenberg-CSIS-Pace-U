@@ -1,6 +1,6 @@
 # ==========================Test Dataset==========================
 # All lines with starting with # symbol or whitespace are ignored.
-# All other whitespace ignored too.
+# All other whitespace is ignored too.
 # Format:
 # input data (hh:mm:ss) or (h:m:s), number of ticks to test, expected output (hh:mm:ss) 
 

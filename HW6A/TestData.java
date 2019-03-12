@@ -12,6 +12,8 @@ public class TestData {
 
     private String expectedOutputStr;
 
+    private final String TIME_STRING_FORMAT = "%02d:%02d:%02d";
+
     public TestData(String line) {
 
         String[] sections = line.split(",");
@@ -47,6 +49,17 @@ public class TestData {
     public int getNumTestTicks() {
 
         return this.numTestTicks;
+        
+    }
+
+    public String getFormattedInputStr() {
+
+        return String.format(
+            TIME_STRING_FORMAT,
+            this.testHr,
+            this.testMin,
+            this.testSec
+        );
         
     }
 

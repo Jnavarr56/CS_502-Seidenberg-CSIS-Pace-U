@@ -78,7 +78,11 @@ public class Main {
         try ( Scanner scan = new Scanner(new FileReader("dataset.txt")) ) {
 
             String line;
+            String output = generateTableHeader();
+            String row;
 
+            System.out.println(output);
+            
             int testNum = 1;
 
             while (scan.hasNext()) {
@@ -88,8 +92,6 @@ public class Main {
                 if ( !(line.length() == 0 || line.charAt(0) == '#') ) {
 
                     testDataObj = new TestData(line);
-
-                    System.out.println("TEST NUMBER: " + testNum);
 
                     timeObj = new Time(
                         testDataObj.getTestHr(), 
@@ -107,8 +109,12 @@ public class Main {
 
                     }
 
-                    System.out.println("ACTUAL OUTPUT: " + timeObj.getTime());
-                    System.out.println("EXPECTED OUTPUT: " + testDataObj.getExpectedOutputStr());
+                    row = generateRow(testNum, testDataObj, timeObj);
+
+                    delay(250);
+                    System.out.println(row);
+
+                    output += row;
 
                     testNum++;
 
@@ -123,6 +129,11 @@ public class Main {
             System.out.println(e);
 
         }
+
+        System.out.println(
+            "\nDone!\n"+
+            "=========================================" + "\n"
+        );
 
     }
 
@@ -152,5 +163,39 @@ public class Main {
 
     }
 
+    private static String generateTableHeader() {
+
+        String title =    "\n|================================================TESTS================================================|\n";
+        String header1 =    "|       |        Inputs        |                                     |                    |           |\n";
+        String bar1 =       "|-------|------|-------|-------|-------------------|-----------------|--------------------|-----------|\n";
+        String header2 =    "|   #   |  Hr  |  Min  |  Sec  |  Formatted Input  | # Ticks to Test |  Expected Outcome  |  Passed?  |";
+
+        return title + header1 + bar1 + header2;
+
+    }
+
+    private static String generateRow(int testNum, TestData testDataObj, Time timeObj) {
+
+        String rowFormat =  "|  %02d   |  %02d  |   %02d  |  %02d   |      %s     |    %02d secs      |      %s      |   %B    |";
+        String bar =       "|-------|------|-------|-------|-------------------|-----------------|--------------------|-----------|";
+
+        rowFormat = bar + "\n" + rowFormat;
+
+        return String.format(
+            rowFormat,
+            testNum,
+            testDataObj.getTestHr(),
+            testDataObj.getTestMin(),
+            testDataObj.getTestSec(),
+            testDataObj.getFormattedInputStr(),
+            testDataObj.getNumTestTicks(),
+            testDataObj.getExpectedOutputStr(),
+            testDataObj.getExpectedOutputStr().equals(timeObj.getTime())
+        );
+
+    }
+
+
 }
+
 
