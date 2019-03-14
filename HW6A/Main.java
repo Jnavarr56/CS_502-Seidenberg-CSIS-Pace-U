@@ -137,11 +137,11 @@ public class Main {
                     "'results.txt' in this directory? [Yy/Nn]: "
                 );
 
-                input = userScan.next();
+                input = userScan.next().toLowerCase().trim();
                 
-                validInput = input.toLowerCase().trim().equals("y") || input.toLowerCase().trim().equals("n") ? true : false;
+                validInput = input.equals("y") || input.equals("n") ? true : false;
 
-                if ( input.toLowerCase().trim().equals("y") ) {
+                if ( input.equals("y") ) {
 
                     writeToFile(output);
 
